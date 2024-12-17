@@ -1072,7 +1072,8 @@ ssl_cert_issue() {
     # install the certificate
     ~/.acme.sh/acme.sh --installcert -d ${domain} \
         --key-file /root/cert/${domain}/privkey.pem \
-        --fullchain-file /root/cert/${domain}/fullchain.pem
+        --fullchain-file /root/cert/${domain}/fullchain.pem \
+        --reloadcmd systemctl restart x-ui
 
     if [ $? -ne 0 ]; then
         LOGE "Installing certificate failed, exiting."
